@@ -1,4 +1,0 @@
-sphere-
-=======
-
-General code dump
