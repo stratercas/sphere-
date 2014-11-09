@@ -1,7 +1,7 @@
 sphere-
 =======
+This repository is for design ideas and public documents related to this project.
 
-This simply a place to drip personal ideas off while working Off site.
-
+There is no particular aim in this repository to create a finished product although this could change in the future.
 
 William K. BowersoxO
