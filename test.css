@@ -1,7 +1,23 @@
+#menu_slide{
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:10;
+	border-radius:15px;
+	border: 2px solid;
+	background-color:black;
+	height:95px;
+}
+#menu_button{
+	width:95px;
+	height:100%;
+	text-align:center;
+}
 #message_board{
   position:absolute;
-  top:0;
-  left:0;
+  top:0px;
+  left:0px;
   width:100%;
   margin-left:auto;
   margin-right:auto;
@@ -9,7 +25,11 @@
   background-color:rgb(255,0,65);
   color:black;
 }
-
+#lbl_messages{
+	position:relative;
+	top:07px;
+	font-size:18pt;
+}
 li{
   font-weight:bold;
   font-size:12pt;
@@ -22,8 +42,13 @@ li{
   font-size:14pt;
   color:rgb(255,255,255);
   text-shadow: 1px 1px 1px rgb(0,0,0); 
+  border-bottom-style:solid;
+  border-bottom-width:6px;
+  border-bottom-color:black;
 }
 #error_list{
+	position:relative;
+	top:7px;
 	margin:15px;
 	width:100%;
 	font-weight:bold;
@@ -33,6 +58,8 @@ li{
 	text-align:center;
 }
 #error_list{
+	position:relative;
+	top:14px;
 	text-align:center;
 	margin-left:30%;
 	width:45%;
@@ -41,8 +68,11 @@ li{
 }
 #lbl_error_list{
 	position:absolute;
-	left:51%;
+	left:05%;
+	top:-04px;
 	margin-left:-50px;
+	width:100%;
+	text-align:center;
 }
 .lnk_brief{
 	color:rgb(0,255,255);
