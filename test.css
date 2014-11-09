@@ -1,9 +1,43 @@
 #message_board{
   position:absolute;
   top:0;
+  left:0;
+  width:100%;
   margin-left:auto;
   margin-right:auto;
   display:block;
-  background-color:red;
+  background-color:rgb(255,0,65);
   color:black;
+}
+
+li{
+  font-weight:bold;
+  font-size:12pt;
+  color:rgb(255,255,255);
+  text-shadow: 1px 1px 1px rgb(0,0,0); 
+}
+
+.desc_label{
+  font-weight:bold;
+  font-size:14pt;
+  color:rgb(255,255,255);
+  text-shadow: 1px 1px 1px rgb(0,0,0); 
+}
+#error_list{
+	
+}
+.lnk_brief{
+	color:rgb(0,255,255);
+	font-size:10pt;
+}
+.lnk_brief_desc{
+}
+
+a.lnk_brief_desc:visited{
+	color:rgb(0,255,255);
+}
+a.lnk_brief_desc:hover{
+	color:rgb(255,255,0);
+	outline-style:solid;
+	outline-color:rgb(255,255,255);
 }
