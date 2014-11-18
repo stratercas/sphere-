@@ -28,22 +28,23 @@ function j_wkb_p_forget_password(){
 	return b_string;
 }
 
-	var main_menu_open = false;
 function _print_start_menu(){
 	var b_string = "";
-	b_string += "<table style=\"min-width:100%;min-height:100%;\">";	
+	b_string += "  <table style=\"min-width:100%;min-height:100%;\">";	
 	b_string += "		<tr>";
-	b_string += "			<td id=\"menu_button\" onclick=\"document.getElementById('menu_slide').innerHTML = _print_login();\">";
+	b_string += "			<td id=\"menu_button\" onclick=\"document.getElementById('menu_slide').innerHTML = _print_login(false);\">";
 	b_string += "				<span style=\"color:WHITE;\">START HERE</span>";
 	b_string += "			</td>";
 	b_string += "		</tr>";
 	b_string += "	</table>";
 	return b_string;
 }
-function _print_login(){
-	if(main_menu_open == false){
+
+function _print_login(open){
+	if(open == false){
 		var b_string = "";
-		b_string += "<nav style= \"float:left;background-color:lightgrey;\">";
+		b_string += "<nav class=\"main_nav\" style= \"float:left;background-color:lightgrey;\">";
+		b_string += "	<div><a class=\"action_menu\" onclick=\"document.getElementById('menu_slide').innerHTML = _print_login(true);\">X</a></div>";
 		b_string += "	<div class=\"action_menu\">";
 		b_string += "		<form action=\"_login.php\" method=\"post\" autocomplete=\"on\">";
 		b_string += "			<table>";
@@ -63,10 +64,8 @@ function _print_login(){
 		b_string += "		</form>";
 		b_string += "	</div>";
 		b_string += "</nav>";
-		main_menu_open = true;
 		return b_string;
 	}else{
-		main_menu_open = false;
 		return _print_start_menu();
 		
 	}
