@@ -13,7 +13,7 @@ body{
 	height:95px;
 }
 #menu_button{
-	width:95px;
+	width:100%;
 	height:100%;
 	text-align:center;
 	z-index:15;
