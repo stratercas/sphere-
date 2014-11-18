@@ -5,12 +5,13 @@
 	<title>Just testing GIT out.</title>
 	<link rel="stylesheet" type="text/css" href="test.css" />
 	<script src="_wkb_login.js" type="text/javascript"></script>
+	<script src="_wkb_validate_email.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="menu_slide">
 		<table style="min-width:100%;min-height:100%;">	
 			<tr>
-				<td id="menu_button" onclick="_wkb_print_login();">
+				<td id="menu_button" onclick="document.getElementById('menu_button').innerHTML = _print_login();">
 					<span style="color:WHITE;">START HERE</span>
 				</td>	
 			</tr>
@@ -59,7 +60,7 @@
 	<div id="content_shell">
 		<div id="content">
 			<div id="frm_search">
-				<form>
+				<form method="post" action="www.google.com" onsubmit="return _validate_email(document.getElementById('frm_email').value);" >
 					<label>Enter your emails for updates!<br /></label>
 					<input onclick="document.getElementById('frm_email').value = '';" id="frm_email" type="text" value="To add email validator" /><br />
 					<input type="submit" />

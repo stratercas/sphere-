@@ -16,6 +16,7 @@ body{
 	width:95px;
 	height:100%;
 	text-align:center;
+	z-index:15;
 }
 #message_board{
   position:absolute;
