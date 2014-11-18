@@ -28,28 +28,46 @@ function j_wkb_p_forget_password(){
 	return b_string;
 }
 
-function _print_login(){
-	alert("menu button's z-index is causing the form to trigger the button visually behind it: going to bed");
+	var main_menu_open = false;
+function _print_start_menu(){
 	var b_string = "";
-	b_string += "<nav style= \"float:left;background-color:lightgrey;\">";
-	b_string += "	<div class=\"action_menu\">";
-	b_string += "		<form action=\"_login.php\" method=\"post\" autocomplete=\"on\">";
-	b_string += "			<table>";
-	b_string += "				<tr>";
-	b_string += "					<td>";
-	b_string += "						<input type=\"text\" name=\"user_name\" value=\"\" />";
-	b_string += "					</td>";
-	b_string += "					<td>";
-	b_string += "						<input type=\"password\" name=\"password\" value=\"\" />";
-	b_string += "					</td>";
-	b_string += "				</tr>";
-	b_string += "				<tr>";
-	b_string += "					<td><a href=\"#\" onclick=\"document.getElementById('menu_side').innerHTML = j_wkb_p_forget_password();\">Forget your password?</a></td>";
-	b_string += "					<td><input type=\"submit\" />";
-	b_string += "				</tr>";
-	b_string += "			</table>";
-	b_string += "		</form>";
-	b_string += "	</div>";
-	b_string += "</nav>";
+	b_string += "<table style=\"min-width:100%;min-height:100%;\">";	
+	b_string += "		<tr>";
+	b_string += "			<td id=\"menu_button\" onclick=\"document.getElementById('menu_slide').innerHTML = _print_login();\">";
+	b_string += "				<span style=\"color:WHITE;\">START HERE</span>";
+	b_string += "			</td>";
+	b_string += "		</tr>";
+	b_string += "	</table>";
 	return b_string;
+}
+function _print_login(){
+	if(main_menu_open == false){
+		var b_string = "";
+		b_string += "<nav style= \"float:left;background-color:lightgrey;\">";
+		b_string += "	<div class=\"action_menu\">";
+		b_string += "		<form action=\"_login.php\" method=\"post\" autocomplete=\"on\">";
+		b_string += "			<table>";
+		b_string += "				<tr>";
+		b_string += "					<td>";
+		b_string += "						<input type=\"text\" name=\"user_name\" value=\"\" />";
+		b_string += "					</td>";
+		b_string += "					<td>";
+		b_string += "						<input type=\"password\" name=\"password\" value=\"\" />";
+		b_string += "					</td>";	
+		b_string += "				</tr>";
+		b_string += "				<tr>";
+		b_string += "					<td><a href=\"#\" onclick=\"document.getElementById('menu_side').innerHTML = j_wkb_p_forget_password();\">Forget your password?</a></td>";
+		b_string += "					<td><input type=\"submit\" />";
+		b_string += "				</tr>";
+		b_string += "			</table>";
+		b_string += "		</form>";
+		b_string += "	</div>";
+		b_string += "</nav>";
+		main_menu_open = true;
+		return b_string;
+	}else{
+		main_menu_open = false;
+		return _print_start_menu();
+		
+	}
 }
