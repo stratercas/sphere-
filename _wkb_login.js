@@ -32,7 +32,7 @@ function _print_login(){
 	alert("menu button's z-index is causing the form to trigger the button visually behind it: going to bed");
 	var b_string = "";
 	b_string += "<nav style= \"float:left;background-color:lightgrey;\">";
-	b_string += "	<div>";
+	b_string += "	<div class=\"action_menu\">";
 	b_string += "		<form action=\"_login.php\" method=\"post\" autocomplete=\"on\">";
 	b_string += "			<table>";
 	b_string += "				<tr>";
