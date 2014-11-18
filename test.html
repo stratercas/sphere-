@@ -8,15 +8,8 @@
 	<script src="_wkb_validate_email.js" type="text/javascript"></script>
 </head>
 <body>
-	<div id="menu_slide">
-		<table style="min-width:100%;min-height:100%;">	
-			<tr>
-				<td id="menu_button" onclick="document.getElementById('menu_slide').innerHTML = _print_login();">
-					<span style="color:WHITE;">START HERE</span>
-				</td>	
-			</tr>
-		</table>				
-	</div>
+	<div id="menu_slide"></div>
+
 	<div id="message_board">
 		<!--LIST OF MESSAGES-->
 		<div id="lbl_error_list" class="desc_label"><div id="lbl_messages">Messages</div></div>
@@ -80,5 +73,9 @@
 			</div>-->
 		</div>		
 	</div>
+
+	<script type="text/javascript">
+		document.getElementById('menu_slide').innerHTML = _print_start_menu();
+	</script>
 </body>
 </html>
