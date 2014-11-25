@@ -3,53 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Just testing GIT out.</title>
+	<meta name="description" content="The future will be like the past but a little more shinny">
 	<link rel="stylesheet" type="text/css" href="test.css" />
 	<script src="_wkb_login.js" type="text/javascript"></script>
 	<script src="_wkb_validate_email.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="menu_slide"></div>
+	<div id="message_board"></div>
 
-	<div id="message_board">
-		<!--LIST OF MESSAGES-->
-		<div id="lbl_error_list" class="desc_label"><div id="lbl_messages">Messages</div></div>
-		<div id="error_list">	
-			<table id="tbl_error_list">
-				<tr>
-					<td>
-						Message 1:
-					</td>
-					<td class="brief_desc">
-						A short suggestion for a resolution with a <a class="lnk_brief_desc" href="#">link</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Message 2:
-					</td>
-					<td class="brief_desc">
-						A short suggestion for a resolution with a <a class="lnk_brief_desc" href="#">link</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Message 3:
-					</td>
-					<td class="brief_desc">
-						A short suggestion for a resolution with a <a class="lnk_brief_desc" href="#">link</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Message 4:
-					</td>
-					<td class="brief_desc">
-						A short suggestion for a resolution with a <a class="lnk_brief_desc" href="#">link</a>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
 	<div id="content_shell">
 		<div id="content">
 			<div id="frm_search">
@@ -75,7 +37,15 @@
 	</div>
 
 	<script type="text/javascript">
-		document.getElementById('menu_slide').innerHTML = _print_start_menu();
+		log_in("stratercas");
+		log_out();
+		_menu_top_add_link("#","Car Notes");
+		_menu_top_add_link("http://www.google.com","GOOGLE");
+		document.getElementById('menu_slide').innerHTML = _print_start_menu(get_screen_name());
+		_message_add("TEST","TESTING");
+		_message_pop();
+
+		if(_message_count()>0)document.getElementById('message_board').innerHTML = _message_print();
 	</script>
 </body>
 </html>
