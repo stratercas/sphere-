@@ -50,7 +50,7 @@ function _print_start_menu(_m_name){
 		b_string += "  <table style=\"width:100%;height:100%;\">";	
 		b_string += "		<tr>";
 		b_string += "			<td id=\"menu_button\" onclick=\"document.getElementById('menu_slide').innerHTML = _print_login(0);\">";
-		b_string += "				<span style=\"color:WHITE;\">START HERE</span>";
+		b_string += "				<span id=\"menu_start_txt\">START HERE</span>";
 		b_string += "			</td>";
 		b_string += "		</tr>";
 		b_string += "	</table>";
