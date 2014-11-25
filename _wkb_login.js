@@ -112,7 +112,7 @@ function _print_login(select){
 			document.getElementById('menu_slide').style.height = "95px";
 			var b_string = "";
 			b_string += "<nav class=\"main_nav\">";
-			b_string += "	<div><a class=\"close_button\" onclick=\"document.getElementById('menu_slide').innerHTML = _print_login(1);\">X</a></div>";
+			b_string += "	<div><a class=\"close_button\" onclick=\"alert(event.clientX);document.getElementById('menu_slide').innerHTML = _print_login(1);\">X</a></div>";
 			b_string += "	<div class=\"action_menu\">";
 			b_string += "		<form action=\"_login.php\" method=\"post\" autocomplete=\"on\">";
 			b_string += "			<table>";
