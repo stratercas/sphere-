@@ -187,7 +187,7 @@ function _message_remove(index){
 
 function _message_clear(){
 	while(_message_pop()>0){
-		return "";
+		return _message_count();
 	}
 }
 
@@ -211,3 +211,10 @@ function _message_print(){
 	b_string += "	</div>";
 	return b_string;
 }
+
+function _box(id){
+	this.shell = "<div id=\"" + id + "\"></div>";
+	this.inside = "";
+	this.menu = "";
+}
+_box.prototype.get = function(){alert(this.shell);};
