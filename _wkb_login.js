@@ -118,10 +118,10 @@ function _print_login(select){
 			b_string += "			<table>";
 			b_string += "				<tr>";
 			b_string += "					<td>";
-			b_string += "						<input type=\"text\" name=\"user_name\" value=\"\" />";
+			b_string += "						<input type=\"text\" name=\"user_name\" value=\"Username:\" onclick=\"this.value= '';\" onblur=\"if(this.value == '')this.value = 'Username:';\"/>";
 			b_string += "					</td>";
 			b_string += "					<td>";
-			b_string += "						<input type=\"password\" name=\"password\" value=\"\" />";
+			b_string += "						<input type=\"password\" name=\"password\" value=\"Password\" onclick=\"this.value = '';\" onblur=\"if(this.value == '')this.value = 'Password';\"/>";
 			b_string += "					</td>";	
 			b_string += "				</tr>";
 			b_string += "				<tr>";
