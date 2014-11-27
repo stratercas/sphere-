@@ -212,19 +212,31 @@ function _message_print(){
 	return b_string;
 }
 
-function _box(id){
-	this.id = id;
+function _box(myid){
+	this.id = myid;
 	this.content = "";
-	this.menu_id = "_id+"_menu";
-	this.menu_item = "test";/*Make array later*/
-	this.menu_item_link = "#";
+	this.menu_id = this.id +"_menu";
+	this.menu_item = new Array();
+	this.menu_item_link = new Array();
 }
-_box.prototype.get = function(){
+function add_menu_item(thisbox,item,link){/*thisbox is from the class _box*/
+	thisbox.menu_item.push(item);
+	thisbox.menu_item_link.push(link);
+	if(thisbox.menu_item.length == thisbox.menu_item_link.length){return thisbox.menu_item.length;}
+	return -1;
+}
+
+_box.prototype.getbox = function(){
 	var b_string = "";
 	b_string += "<div id=\"" + this.id + "\">";
 	b_string +=	"<div id=\"" + this.menu_id + "\">";
-	b_string +=		"<a href=\""+this.menu_item_link+"\">" + this.menu_item + "</div>";
+	b_string +=	"<ul>";
+	for(i=0;i<this.menu_item.length;i++){
+		b_string +=		"<li><a href=\""+this.menu_item_link[i]+"\">" + this.menu_item[i] + "</a></li>";
+	}
+	b_string +=	"</ul>";
 	b_string +=	"</div>";
+	b_string +=	"<div id=\""+this.id+"\">"+this.content+"</div>";
 	b_string += "</div>";
-	
+	return b_string;
 };
