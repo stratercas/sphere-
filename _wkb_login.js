@@ -213,8 +213,18 @@ function _message_print(){
 }
 
 function _box(id){
-	this.shell = "<div id=\"" + id + "\"></div>";
-	this.inside = "";
-	this.menu = "";
+	this.id = id;
+	this.content = "";
+	this.menu_id = "_id+"_menu";
+	this.menu_item = "test";/*Make array later*/
+	this.menu_item_link = "#";
 }
-_box.prototype.get = function(){alert(this.shell);};
+_box.prototype.get = function(){
+	var b_string = "";
+	b_string += "<div id=\"" + this.id + "\">";
+	b_string +=	"<div id=\"" + this.menu_id + "\">";
+	b_string +=		"<a href=\""+this.menu_item_link+"\">" + this.menu_item + "</div>";
+	b_string +=	"</div>";
+	b_string += "</div>";
+	
+};
