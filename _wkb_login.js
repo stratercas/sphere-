@@ -11,7 +11,7 @@ function j_wkb_p_forget_password(){
 	b_string += "			<table>";
 	b_string += "				<tr>";
 	b_string += "					<td>";
-	b_string += "						<input type=\"text\" name=\"email\" value=\"\" />";
+	b_string += "						<input type=\"text\" name=\"email\" value=\"Please type in your email:\" onclick=\"this.value= '';\" onblur=\"if(this.value == '')this.value = 'Please type in your email:';\"/>";
 	b_string += "					</td>";
 	b_string += "					<td>";
 	b_string += "						&nbsp;";
