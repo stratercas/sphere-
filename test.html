@@ -45,7 +45,7 @@
 		_message_add("TEST","TESTING");
 		_message_pop();
 		if(_message_count()>0)document.getElementById('message_board').innerHTML = _message_print();
-		var test_box = new _box;
+		var test_box = new _box("test_id");
 		alert(test_box.get());
 	</script>
 </body>
