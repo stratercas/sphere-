@@ -46,20 +46,15 @@
 		_message_pop();
 		if(_message_count()>0)document.getElementById('message_board').innerHTML = _message_print();
 		
-
 		var test_box = new _box("test_id");
-		alert(add_menu_item(test_box,"Google","http://www.google.com"));
-		alert(add_menu_item(test_box,"Yahoo","http://www.yahoo.com"));
+		test_box.onclick = true;
+		test_box.onclickcode = "alert(test_box.get_rel_posX());";
+
+		add_menu_item(test_box,"Google","http://www.google.com");
+		add_menu_item(test_box,"Yahoo","http://www.yahoo.com");
 		test_box.content = "SOME GREAT THINGS";
 		document.getElementById('content_shell').innerHTML = test_box.getbox();
 
-		var test_box2 = new _box("test_id");
-		alert(add_menu_item(test_box2,"About","http://www.facebook.com/stratercas"));
-		alert(add_menu_item(test_box2,"Company","http://www.legionauts.com"));
-		test_box2.content = "MORE GREAT THINGS";
-		document.getElementById('content_shell').innerHTML = test_box2.getbox();
-
-		document.getElementById('content_shell').innerHTML = test_box.getbox();
 	</script>
 </body>
 </html>
