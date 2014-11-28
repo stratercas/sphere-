@@ -470,8 +470,16 @@ _wkb_val_TLD[451] = ".中信";
 
 function _validate_TDL(e_string){
 	var _length = parseInt(_wkb_val_TLD.length);
+	var s_pos = -1; s_extract = "";
 	for(var i=0; i < _length; i++){
-		if(parseInt(e_string.indexOf(_wkb_val_TLD[i]))!=-1){return 1;}
+		s_pos=e_string.indexOf(_wkb_val_TLD[i]);
+		if(s_pos !=- 1){
+			for(j=s_pos;j<e_string.length;j++){
+				s_extract += e_string.charAt(j);
+			}
+			if(s_extract == _wkb_val_TLD[i])return 1;
+		}
+		
 	}
 	alert("An e-mail must have a vaild Top level domain: ex) .com|.edu");
 	return 0;
@@ -501,16 +509,17 @@ function _validate_email(e_string){
 
 	var err = 0;/*To keep track of errors*/
 
-/*If '@' does not exsist; log error and move on to next test.*/
+	/*If '@' does not exsist; log error and move on to next test.*/
 	if(e_string.search("@") == -1){err++; alert("An email must have an '@' character");}
 	
-/*If there is not a valid Top Level domain; log error and move on*/
+	/*If there is not a valid Top Level domain; log error and move on*/
 	if(parseInt(_validate_TDL(e_string))==0)err++;
 
-/*If there is a known imcompatible carrier and TDL combo; log error*/
+	/*If there is a known imcompatible carrier and TDL combo; log error*/
 	if(_known_invalid_TDL_email_combo(e_string) == 0)err++;
 
-/*Let calling function know whether this is a valid email or not. To the extent that can be done before sending an email*/
+	/*Let calling function know whether this is a valid email or not. To the extent that can be done before sending an email*/
 	if(err == 0)return true;
-	return false;
+	
+	return false;/*In case of errors*/
 }
