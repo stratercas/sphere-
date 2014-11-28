@@ -185,3 +185,38 @@ table#tbl_search_center{
 label{
 	color:black;
 }
+
+._box{
+	border-width:1px;
+	border-color:black;
+	border-style:solid;
+	background-color:white;
+}
+
+.single_task{	
+	width:100%;
+	height:100%;
+	margin-left:auto; 
+	margin-right:auto;
+
+}
+
+table.fill{}
+table.truecenter{
+	width:100%;
+	height:100%;
+	margin-left:auto; 
+	margin-right:auto;
+  	position: relative;
+  	top: 50%;
+  	transform: translateY(-5%);
+}
+td.truecenter{
+	margin-left:auto;
+	margin-right:auto;
+text-align:center;
+
+}
+form{
+	width:100%;
+}
