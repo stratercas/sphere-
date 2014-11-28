@@ -47,14 +47,23 @@
 		if(_message_count()>0)document.getElementById('message_board').innerHTML = _message_print();
 		
 		var test_box = new _box("test_id");
+		var test_box2 = new _box("test_id2");
+
 		test_box.onclick = true;
 		test_box.onclickcode = "alert(test_box.get_rel_posX());";
-
 		add_menu_item(test_box,"Google","http://www.google.com");
 		add_menu_item(test_box,"Yahoo","http://www.yahoo.com");
 		test_box.content = "SOME GREAT THINGS";
-		document.getElementById('content_shell').innerHTML = test_box.getbox();
 
+		test_box2.position = "relative";
+		test_box2.onclick = true;
+		test_box2.onclickcode = "test_box2.move_rel_posX();";
+		add_menu_item(test_box2,"Google","http://www.google.com");
+		add_menu_item(test_box2,"Yahoo","http://www.yahoo.com");
+		test_box2.content = "SOME GREAT THINGS";
+
+		document.getElementById('content_shell').innerHTML = test_box.getbox();
+		document.write(test_box2.getbox());
 	</script>
 </body>
 </html>
