@@ -226,8 +226,14 @@ function _box(myid){
 	this.position		= "";
 }
 _box.prototype.get_rel_posX = function(){
-	alert(document.getElementById(this.id).offsetLeft);
 	return (event.clientX - document.getElementById(this.id).parentNode.offsetLeft);/*explicitly declair element*/
+};
+_box.prototype.move_rel_posX = function(){
+	var current = document.getElementById(this.id).parentNode.offsetLeft;
+	current += event.clientX - document.getElementById(this.id).parentNode.offsetLeft;
+	var cur_left = document.getElementById(this.id).offsetLeft;
+	var n_left = String(cur_left + this.get_rel_posX())+"px";
+	document.getElementById(this.id).style.left = String(n_left);
 };
 
 
@@ -241,7 +247,9 @@ function add_menu_item(thisbox,item,link){/*thisbox is from the class _box*/
 
 _box.prototype.getbox = function(){
 	var b_string = "";
-	b_string += b_string += "<div class=\"_box\" id=\"" + this.id + "\" ";
+	b_string += b_string += "<div class=\"_box\" id=\"" + this.id + "\" style=\"";
+	if(this.position != ""){b_string += "position:"+this.position+";";}
+	b_string += "\"";
 	if(this.onclick == true){
 		b_string += "onclick=\""+this.onclickcode+"\" ";
 	}
