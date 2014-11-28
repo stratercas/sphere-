@@ -218,12 +218,19 @@ function _box(myid){
 	this.menu_item_link	= new Array();
 	this.onclick 		= false;
 	this.onclickcode	= "";
+	this.onmousedown	= false;
+	this.onmousedowncode	= "";
+	this.onblur		= false;
+	this.onblurcode		= "";
 	this.movable   		= false;
 	this.position		= "";
 }
 _box.prototype.get_rel_posX = function(){
-	return (event.clientX - this.offsetLeft);/*explicitly declair element*/
+	alert(document.getElementById(this.id).offsetLeft);
+	return (event.clientX - document.getElementById(this.id).parentNode.offsetLeft);/*explicitly declair element*/
 };
+
+
 
 function add_menu_item(thisbox,item,link){/*thisbox is from the class _box*/
 	thisbox.menu_item.push(item);
