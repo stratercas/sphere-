@@ -233,7 +233,8 @@ function _box(myid){
 
 var mouseDown = [0,0,0,0,0,0,0,0,0],
     mouseDownCount = 0,
-    mouseFocus = "";
+    mouseFocus = "",
+    z   = 0;
 
 window.onmousedown = function(evt){
 	++mouseDown[evt.button];
@@ -243,6 +244,7 @@ window.onmousedown = function(evt){
     		mouseDownCount = 0;
 	}
 	document.getElementById('mouse_value').innerHTML = evt.button;
+	document.getElementById(mouseFocus).style.zIndex = z++;
 }
 
 window.onmouseup = function(evt){

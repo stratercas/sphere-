@@ -191,6 +191,7 @@ label{
 	border-color:black;
 	border-style:solid;
 	background-color:white;
+	z-index:1;
 }
 
 .single_task{	
