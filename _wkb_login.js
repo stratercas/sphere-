@@ -232,7 +232,8 @@ function _box(myid){
 }
 
 var mouseDown = [0,0,0,0,0,0,0,0,0],
-    mouseDownCount = 0;
+    mouseDownCount = 0,
+    mouseFocus = "";
 
 window.onmousedown = function(evt){
 	++mouseDown[evt.button];
@@ -256,9 +257,12 @@ window.onmouseup = function(evt){
 
 
 window.onmousemove = function(evt){
-	document.getElementById('test_id').style.left = String(event.clientX-document.getElementById('content_shell').offsetLeft)+"px";
-	document.getElementById('test_id').style.top  = String(event.clientY-document.getElementById('content_shell').offsetTop)+"px";
-	document.getElementById('mouse_value').innerHTML = "X: "+ event.clientX + "Y: " + event.clientY;
+	if(mouseDownCount > 0 && mouseDown[0]>0){
+		alert(mouseFocus);
+		document.getElementById(mouseFocus).style.left = String(event.clientX-document.getElementById('content_shell').offsetLeft)+"px";
+		document.getElementById(mouseFocus).style.top  = String(event.clientY-document.getElementById('content_shell').offsetTop)+"px";
+		document.getElementById(mouseFocus).innerHTML = "X: "+ event.clientX + "Y: " + event.clientY;
+	}
 	
 }
 
@@ -277,6 +281,7 @@ _box.prototype.move_rel_posX = function(){
 };
 
 _box.prototype.start_mouse_down = function(){
+	mouseDownFocus = this.id;
 	this.onmousedownInterval = setInterval(function(){/*this.onmousedowncode;*/alert('');},13);
 };
 
