@@ -8,7 +8,7 @@
 	<script src="_wkb_login.js" type="text/javascript"></script>
 	<script src="_wkb_validate_email.js" type="text/javascript"></script>
 </head>
-<body>
+<body id="_page">
 	<div id="menu_slide"></div>
 	<div id="message_board"></div>
 
@@ -50,17 +50,30 @@
 		var test_box2 = new _box("test_id2");
 
 		test_box.onclick = true;
-		test_box.onclickcode = "alert(test_box.get_rel_posX());";
+		test_box.onclickcode = "";
 		add_menu_item(test_box,"Google","http://www.google.com");
 		add_menu_item(test_box,"Yahoo","http://www.yahoo.com");
-		test_box.content = "SOME GREAT THINGS";
+		test_box.content = "SOME GREAT THINGS<br /><br /><div id=\"mouse_value\"></div>";
+		test_box.onmousemove = true;
+		test_box.onmousemovecode = "";
+		test_box.onmousedown = true;
+		test_box.onmousedowncode= "";
+		test_box.position = "relative";
 
-		test_box2.position = "relative";
-		test_box2.onclick = true;
-		test_box2.onclickcode = "test_box2.move_rel_posX();";
+		test_box2.position 	= "relative";
+		test_box2.onclick 	= true;
+		test_box2.onclickcode 	= "";
+		test_box2.onmousedown	= true;
+		test_box2.onmousedowncode = "";
+		test_box2.onmousemove	= true;
+		test_box2.onmousemovecode = "";
+		test_box2.onblur  	= true;
+		test_box2.onblurcode 	= "";
+		test_box2.onmouseup  	= true;
+		test_box2.onmouseupcode = "";
 		add_menu_item(test_box2,"Google","http://www.google.com");
 		add_menu_item(test_box2,"Yahoo","http://www.yahoo.com");
-		test_box2.content = "SOME GREAT THINGS";
+		test_box2.content = "SOME GREAT THINGS<br /><br /><div id=\"mouse_value\"></div>";
 
 		document.getElementById('content_shell').innerHTML = test_box.getbox();
 		document.write(test_box2.getbox());

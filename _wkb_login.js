@@ -220,11 +220,51 @@ function _box(myid){
 	this.onclickcode	= "";
 	this.onmousedown	= false;
 	this.onmousedowncode	= "";
+	this.onmousedownInterval;
 	this.onblur		= false;
 	this.onblurcode		= "";
-	this.movable   		= false;
+	this.onmouseup		= false;
+	this.onmouseupcode	= "";
+	this.onmousemove	= false;
+	this.onmousemovecode	= "";
+	this.moveable   	= false;
 	this.position		= "";
 }
+
+var mouseDown = [0,0,0,0,0,0,0,0,0],
+    mouseDownCount = 0;
+
+window.onmousedown = function(evt){
+	++mouseDown[evt.button];
+	++mouseDownCount;
+	if(mouseDownCount > 1||mouseDownCount < 0){
+		mouseDown = [0,0,0,0,0,0,0,0,0],
+    		mouseDownCount = 0;
+	}
+	document.getElementById('mouse_value').innerHTML = evt.button;
+}
+
+window.onmouseup = function(evt){
+	--mouseDown[evt.button];
+	--mouseDownCount;
+	if(mouseDownCount > 1||mouseDownCount < 0){
+		mouseDown = [0,0,0,0,0,0,0,0,0],
+    		mouseDownCount = 0;
+	}
+	document.getElementById('mouse_value').innerHTML = evt.button;
+}
+
+
+window.onmousemove = function(evt){
+	document.getElementById('test_id').style.left = String(event.clientX-document.getElementById('content_shell').offsetLeft)+"px";
+	document.getElementById('test_id').style.top  = String(event.clientY-document.getElementById('content_shell').offsetTop)+"px";
+	document.getElementById('mouse_value').innerHTML = "X: "+ event.clientX + "Y: " + event.clientY;
+	
+}
+
+setInterval(function(){document.onmousemove();},13);
+
+
 _box.prototype.get_rel_posX = function(){
 	return (event.clientX - document.getElementById(this.id).parentNode.offsetLeft);/*explicitly declair element*/
 };
@@ -236,7 +276,9 @@ _box.prototype.move_rel_posX = function(){
 	document.getElementById(this.id).style.left = String(n_left);
 };
 
-
+_box.prototype.start_mouse_down = function(){
+	this.onmousedownInterval = setInterval(function(){/*this.onmousedowncode;*/alert('');},13);
+};
 
 function add_menu_item(thisbox,item,link){/*thisbox is from the class _box*/
 	thisbox.menu_item.push(item);
@@ -251,7 +293,19 @@ _box.prototype.getbox = function(){
 	if(this.position != ""){b_string += "position:"+this.position+";";}
 	b_string += "\"";
 	if(this.onclick == true){
-		b_string += "onclick=\""+this.onclickcode+"\" ";
+		b_string += " onclick=\""+this.onclickcode+"\" ";
+	}
+	if(this.onmousedown == true){
+		b_string += " onmousedown=\""+this.onmousedowncode+"\" ";
+	}
+	if(this.onmouseup == true){
+		b_string += " onmouseup=\""+this.onmouseupcode+"\" ";
+	}
+	if(this.onblur == true){
+		b_string += " onblur=\""+this.onblurcode+"\" ";
+	}	
+	if(this.onmousemove == true){
+		b_string += " onmousemove=\""+this.onmousemovecode+"\" ";
 	}
 	b_string += ">";
 	b_string +=	"<div id=\"" + this.menu_id + "\">";
@@ -264,4 +318,5 @@ _box.prototype.getbox = function(){
 	b_string +=	"<div id=\""+this.id+"\">"+this.content+"</div>";
 	b_string += "</div>";
 	return b_string;
+
 };
