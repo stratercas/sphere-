@@ -258,10 +258,9 @@ window.onmouseup = function(evt){
 
 window.onmousemove = function(evt){
 	if(mouseDownCount > 0 && mouseDown[0]>0){
-		alert(mouseFocus);
 		document.getElementById(mouseFocus).style.left = String(event.clientX-document.getElementById('content_shell').offsetLeft)+"px";
 		document.getElementById(mouseFocus).style.top  = String(event.clientY-document.getElementById('content_shell').offsetTop)+"px";
-		document.getElementById(mouseFocus).innerHTML = "X: "+ event.clientX + "Y: " + event.clientY;
+		/*document.getElementById(mouseFocus).innerHTML = "X: "+ event.clientX + "Y: " + event.clientY;*/
 	}
 	
 }
@@ -298,19 +297,19 @@ _box.prototype.getbox = function(){
 	if(this.position != ""){b_string += "position:"+this.position+";";}
 	b_string += "\"";
 	if(this.onclick == true){
-		b_string += " onclick=\""+this.onclickcode+"\" ";
+		b_string += " onclick=\" "+this.onclickcode+" \" ";
 	}
 	if(this.onmousedown == true){
-		b_string += " onmousedown=\""+this.onmousedowncode+"\" ";
+		b_string += " onmousedown=\" "+this.onmousedowncode+" \" ";
 	}
 	if(this.onmouseup == true){
-		b_string += " onmouseup=\""+this.onmouseupcode+"\" ";
+		b_string += " onmouseup=\" "+this.onmouseupcode+" \" ";
 	}
 	if(this.onblur == true){
-		b_string += " onblur=\""+this.onblurcode+"\" ";
+		b_string += " onblur=\" "+this.onblurcode+" \" ";
 	}	
 	if(this.onmousemove == true){
-		b_string += " onmousemove=\""+this.onmousemovecode+"\" ";
+		b_string += " onmousemove=\" "+this.onmousemovecode+" \" ";
 	}
 	b_string += ">";
 	b_string +=	"<div id=\"" + this.menu_id + "\">";
