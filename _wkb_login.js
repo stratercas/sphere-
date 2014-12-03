@@ -224,6 +224,7 @@ window.onmousedown = function(evt){
 	}
 	document.getElementById('mouse_value').innerHTML = evt.button;
 	document.getElementById(mouseFocus).style.zIndex = z++;
+	document.getElementById(mouseFocus).style.userSelect = "none";
 	document.getElementById('mouse_value').innerHTML = document.getElementById(mouseFocus).style.zIndex;
 }
 
@@ -234,6 +235,8 @@ window.onmouseup = function(evt){
 		mouseDown = [0,0,0,0,0,0,0,0,0],
     		mouseDownCount = 0;
 	}
+	mouseFocus= "";
+	document.cookie = "menu1=This_will_be_telling; expires=Fri, 3 Aug 2001 20:47:11 UTC; path=/";
 }
 
 
@@ -270,8 +273,6 @@ function _box(myid){
 function _box_setZ(thisbox, newZ){
 	document.getElementById(thisbox.id).style.zIndex = newZ;
 }
-
-setInterval(function(){document.onmousemove();},13);
 
 
 _box.prototype.get_rel_posX = function(){
@@ -327,6 +328,7 @@ _box.prototype.getbox = function(){
 	b_string +=	"</div>";
 	b_string +=	"<div id=\""+this.id+"\">"+this.content+"</div>";
 	b_string += "</div>";
+	alert(b_string);
 	return b_string;
 
 };
