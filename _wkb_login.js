@@ -210,6 +210,42 @@ function _message_print(){
 	return b_string;
 }
 
+var mouseDown = [0,0,0,0,0,0,0,0,0],
+    mouseDownCount = 0,
+    mouseFocus = "",
+    z   = 4;
+
+window.onmousedown = function(evt){
+	++mouseDown[evt.button];
+	++mouseDownCount;
+	if(mouseDownCount > 1||mouseDownCount < 0){
+		mouseDown = [0,0,0,0,0,0,0,0,0],
+    		mouseDownCount = 0;
+	}
+	document.getElementById('mouse_value').innerHTML = evt.button;
+	document.getElementById(mouseFocus).style.zIndex = z++;
+	document.getElementById('mouse_value').innerHTML = document.getElementById(mouseFocus).style.zIndex;
+}
+
+window.onmouseup = function(evt){
+	--mouseDown[evt.button];
+	--mouseDownCount;
+	if(mouseDownCount > 1||mouseDownCount < 0){
+		mouseDown = [0,0,0,0,0,0,0,0,0],
+    		mouseDownCount = 0;
+	}
+}
+
+
+window.onmousemove = function(evt){
+	if(mouseDownCount > 0 && mouseDown[0]>0){
+		document.getElementById(mouseFocus).style.left = String(event.clientX-document.getElementById('content_shell').offsetLeft)+"px";
+		document.getElementById(mouseFocus).style.top  = String(event.clientY-document.getElementById('content_shell').offsetTop)+"px";
+		/*document.getElementById(mouseFocus).innerHTML = "X: "+ event.clientX + "Y: " + event.clientY;*/
+	}
+	
+}
+
 function _box(myid){
 	this.id 		= myid;
 	this.content 		= "";
@@ -231,40 +267,8 @@ function _box(myid){
 	this.position		= "";
 }
 
-var mouseDown = [0,0,0,0,0,0,0,0,0],
-    mouseDownCount = 0,
-    mouseFocus = "",
-    z   = 0;
-
-window.onmousedown = function(evt){
-	++mouseDown[evt.button];
-	++mouseDownCount;
-	if(mouseDownCount > 1||mouseDownCount < 0){
-		mouseDown = [0,0,0,0,0,0,0,0,0],
-    		mouseDownCount = 0;
-	}
-	document.getElementById('mouse_value').innerHTML = evt.button;
-	document.getElementById(mouseFocus).style.zIndex = z++;
-}
-
-window.onmouseup = function(evt){
-	--mouseDown[evt.button];
-	--mouseDownCount;
-	if(mouseDownCount > 1||mouseDownCount < 0){
-		mouseDown = [0,0,0,0,0,0,0,0,0],
-    		mouseDownCount = 0;
-	}
-	document.getElementById('mouse_value').innerHTML = evt.button;
-}
-
-
-window.onmousemove = function(evt){
-	if(mouseDownCount > 0 && mouseDown[0]>0){
-		document.getElementById(mouseFocus).style.left = String(event.clientX-document.getElementById('content_shell').offsetLeft)+"px";
-		document.getElementById(mouseFocus).style.top  = String(event.clientY-document.getElementById('content_shell').offsetTop)+"px";
-		/*document.getElementById(mouseFocus).innerHTML = "X: "+ event.clientX + "Y: " + event.clientY;*/
-	}
-	
+function _box_setZ(thisbox, newZ){
+	document.getElementById(thisbox.id).style.zIndex = newZ;
 }
 
 setInterval(function(){document.onmousemove();},13);
