@@ -59,8 +59,8 @@
 		test_box.onmousedowncode  = " mouseFocus = 'test_id';";
 		test_box.onmouseup 	  = true;
 		test_box.onmouseupcode 	  = " mouseFocus = ''; ";
-		test_box.position 	  = "relative";
-		test_box2.position 	  = "relative";
+		test_box.position 	  = "absolute";
+		test_box2.position 	  = "absolute";
 		test_box2.onclick 	  = true;
 		test_box2.onclickcode 	  = "";
 		test_box2.onmousedown	  = true;
@@ -73,12 +73,26 @@
 		test_box2.onmouseupcode   = " mouseFocus = ''; ";
 		add_menu_item(test_box2,"Google","http://www.google.com");
 		add_menu_item(test_box2,"Yahoo","http://www.yahoo.com");
-		test_box2.content = "SOME GREAT THINGS<br /><br /><div id=\"mouse_value\"></div>";
-		document.getElementById('content_shell').innerHTML = test_box.getbox();
-		document.write(test_box2.getbox());
 
+		var test_box3 = new _box("test_id3");
+		test_box3.position 	  = "absolute";
+		test_box3.onclick 	  = true;
+		test_box3.onclickcode 	  = "";
+		test_box3.onmousedown	  = true;
+		test_box3.onmousedowncode = " mouseFocus = 'test_id3';";
+		test_box3.onmousemove	  = true;
+		test_box3.onmousemovecode = "";
+		test_box3.onblur  	  = true;
+		test_box3.onblurcode 	  = "";
+		test_box3.onmouseup  	  = true;
+		test_box3.onmouseupcode   = " mouseFocus = ''; ";
+		add_menu_item(test_box3,"Google","http://www.google.com");
+		add_menu_item(test_box3,"Yahoo","http://www.yahoo.com");
+		test_box3.content = "SOME GREAT THINGS<br /><br /><div id=\"mouse_value\"></div>";
+		document.getElementById('content_shell').innerHTML = test_box.getbox()+test_box2.getbox()+test_box3.getbox();
 		_box_setZ(test_box,3);
 		_box_setZ(test_box2,3);
+		_box_setZ(test_box3,3);
 	</script>
 </body>
 </html>
