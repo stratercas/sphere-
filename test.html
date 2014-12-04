@@ -56,7 +56,7 @@
 		test_box.onmousemove 	  = true;
 		test_box.onmousemovecode  = "";
 		test_box.onmousedown 	  = true;
-		test_box.onmousedowncode  = " mouseFocus = 'test_id';";
+		test_box.onmousedowncode  = " mouseFunction = MOVE_BOX; mouseFocus = 'test_id';";
 		test_box.onmouseup 	  = true;
 		test_box.onmouseupcode 	  = " mouseFocus = ''; ";
 		test_box.position 	  = "absolute";
@@ -64,7 +64,7 @@
 		test_box2.onclick 	  = true;
 		test_box2.onclickcode 	  = "";
 		test_box2.onmousedown	  = true;
-		test_box2.onmousedowncode = " mouseFocus = 'test_id2';";
+		test_box2.onmousedowncode = " mouseFunction = ALERT; mouseFocus = 'test_id2';";
 		test_box2.onmousemove	  = true;
 		test_box2.onmousemovecode = "";
 		test_box2.onblur  	  = true;
@@ -79,7 +79,7 @@
 		test_box3.onclick 	  = true;
 		test_box3.onclickcode 	  = "";
 		test_box3.onmousedown	  = true;
-		test_box3.onmousedowncode = " mouseFocus = 'test_id3';";
+		test_box3.onmousedowncode = " mouseFunction = MOVE_BOX; ALERT_MESSAGE='Nobody better lay a figure on my butterfinger'; mouseFocus = 'test_id3';";
 		test_box3.onmousemove	  = true;
 		test_box3.onmousemovecode = "";
 		test_box3.onblur  	  = true;
@@ -88,9 +88,11 @@
 		test_box3.onmouseupcode   = " mouseFocus = ''; ";
 		add_menu_item(test_box3,"Google","http://www.google.com");
 		add_menu_item(test_box3,"Yahoo","http://www.yahoo.com");
-		test_box3.content = "SOME GREAT THINGS<br /><br /><div id=\"mouse_value\"></div>";
+		test_box3.content = "<div><table><tr><td style='background-color:green;'>STUFF</td><td>&nbsp;</td></tr><tr><td>CELL1</td><td>CELL2</td></tr></table></div>";
 		document.getElementById('content_shell').innerHTML = test_box.getbox()+test_box2.getbox()+test_box3.getbox();
 		_box_setZ(test_box,3);
+		_box_setXY(test_box, 75,75, PERCENT);
+		setInterval(function(){_box_setXY(test_box,Math.random()*100,Math.random()*100,PERCENT);},13);
 		_box_setZ(test_box2,3);
 		_box_setZ(test_box3,3);
 	</script>

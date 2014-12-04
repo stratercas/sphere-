@@ -215,6 +215,15 @@ var mouseDown = [0,0,0,0,0,0,0,0,0],
     mouseFocus = "",
     z   = 4;
 
+var ALERT_MESSAGE = "";
+var NO_ACTION = 0,
+	ALERT = 1;
+	MOVE_BOX = 2,
+	CHANGE_COLOR = 3,
+	DOUBLE_SIZE = 4;
+var mouseFunction = NO_ACTION;
+
+
 window.onmousedown = function(evt){
 	++mouseDown[evt.button];
 	++mouseDownCount;
@@ -222,10 +231,29 @@ window.onmousedown = function(evt){
 		mouseDown = [0,0,0,0,0,0,0,0,0],
     		mouseDownCount = 0;
 	}
-	document.getElementById('mouse_value').innerHTML = evt.button;
-	document.getElementById(mouseFocus).style.zIndex = z++;
-	document.getElementById(mouseFocus).style.userSelect = "none";
-	document.getElementById('mouse_value').innerHTML = document.getElementById(mouseFocus).style.zIndex;
+
+	switch(mouseFunction){
+	case NO_ACTION:
+		break;
+	case ALERT:
+		alert(ALERT_MESSAGE);
+		mouseFocus = "";
+		mouseFunction = NO_ACTION;
+		break;
+	case MOVE_BOX:
+		document.getElementById('mouse_value').innerHTML = evt.button;
+		document.getElementById(mouseFocus).style.zIndex = z++;
+		document.getElementById(mouseFocus).style.userSelect = "none";
+		document.getElementById('mouse_value').innerHTML = document.getElementById(mouseFocus).style.zIndex;
+		break;
+	case CHANGE_COLOR:
+		document.getElementById(mouseFocus).style.backgroundColor = "red";
+	case DOUBLE_SIZE:
+		document.getElementById(mouseFocus).style.height = "700px";
+		document.getElementById(mouseFocus).style.width = "1700px";
+	default:
+		break;
+	}
 }
 
 window.onmouseup = function(evt){
@@ -236,15 +264,27 @@ window.onmouseup = function(evt){
     		mouseDownCount = 0;
 	}
 	mouseFocus= "";
+	mouseFunction = NO_ACTION;
 	document.cookie = "menu1=This_will_be_telling; expires=Fri, 3 Aug 2001 20:47:11 UTC; path=/";
 }
 
-
 window.onmousemove = function(evt){
-	if(mouseDownCount > 0 && mouseDown[0]>0){
-		document.getElementById(mouseFocus).style.left = String(event.clientX-document.getElementById('content_shell').offsetLeft)+"px";
-		document.getElementById(mouseFocus).style.top  = String(event.clientY-document.getElementById('content_shell').offsetTop)+"px";
+	switch(mouseFunction){
+	case NO_ACTION:
+		break;
+	case ALERT:
+		mouseFocus = "";
+		mouseFunction = NO_ACTION;
+		break;
+	case MOVE_BOX:
+		if(mouseDownCount > 0 && mouseDown[0]>0){
+			document.getElementById(mouseFocus).style.left = String(event.clientX-document.getElementById('content_shell').offsetLeft)+"px";
+			document.getElementById(mouseFocus).style.top  = String(event.clientY-document.getElementById('content_shell').offsetTop)+"px";
 		/*document.getElementById(mouseFocus).innerHTML = "X: "+ event.clientX + "Y: " + event.clientY;*/
+		}
+		break;
+	default:
+		break;
 	}
 	
 }
@@ -270,26 +310,47 @@ function _box(myid){
 	this.position		= "";
 }
 
+var PX = 0,
+	PT = 1,
+	PERCENT = 3;
+function _box_setXY(thisbox, newX,newY,newUnit){
+	this_unit = "";
+	switch(newUnit){
+	case PX:
+		this_unit = 'px';
+		break;
+	case PT:
+		this_unit = 'pt';
+		break;
+	case PERCENT:
+		this_unit = '%';
+		break;
+	default:
+		alert('_box_setXY: Must delcare a proper unit');
+		break;
+	}
+	document.getElementById(thisbox.id).style.top	 = String(newY)+this_unit;
+	document.getElementById(thisbox.id).style.left	 = String(newX)+this_unit;
+}
 function _box_setZ(thisbox, newZ){
 	document.getElementById(thisbox.id).style.zIndex = newZ;
 }
 
 
-_box.prototype.get_rel_posX = function(){
-	return (event.clientX - document.getElementById(this.id).parentNode.offsetLeft);/*explicitly declair element*/
-};
-_box.prototype.move_rel_posX = function(){
+/*_box.prototype.get_rel_posX = function(){
+	return (event.clientX - document.getElementById(this.id).parentNode.offsetLeft);
+};*/
+
+
+/*_box.prototype.move_rel_posX = function(){
 	var current = document.getElementById(this.id).parentNode.offsetLeft;
 	current += event.clientX - document.getElementById(this.id).parentNode.offsetLeft;
 	var cur_left = document.getElementById(this.id).offsetLeft;
 	var n_left = String(cur_left + this.get_rel_posX())+"px";
 	document.getElementById(this.id).style.left = String(n_left);
-};
+};*/
 
-_box.prototype.start_mouse_down = function(){
-	mouseDownFocus = this.id;
-	this.onmousedownInterval = setInterval(function(){/*this.onmousedowncode;*/alert('');},13);
-};
+
 
 function add_menu_item(thisbox,item,link){/*thisbox is from the class _box*/
 	thisbox.menu_item.push(item);
@@ -328,7 +389,6 @@ _box.prototype.getbox = function(){
 	b_string +=	"</div>";
 	b_string +=	"<div id=\""+this.id+"\">"+this.content+"</div>";
 	b_string += "</div>";
-	alert(b_string);
 	return b_string;
 
 };
