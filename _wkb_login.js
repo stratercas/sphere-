@@ -3,28 +3,7 @@ function j_wkb_validate_forget_password_form(){
 	}else{return true;}
 }
 
-function j_wkb_p_forget_password(){
-	var b_string = "";
-	b_string += "	<div class=\"single_task\">";
 
-	b_string += "	<div><a class=\"close_button\" onclick=\"document.getElementById('menu_slide').innerHTML = _print_login(0);\">X</a></div>";
-
-	b_string += "		<form name=\"forgotForm\" action=\"_wkb_forgotpassword.php\" method=\"post\" onsubmit=\"return j_wkb_validate_forget_password_form();\"  autocomplete=\"on\">";
-	b_string += "			<table class=\"truecenter\">";
-	b_string += "				<tr>";
-	b_string += "					<td class=\"truecenter\">";
-	b_string += "						Please submit your account email:<br />";
-	b_string += "						<input type=\"text\" name=\"email\" value=\"Email:\" onclick=\"if(this.value=='Email:')this.value= '';\" onblur=\"if(this.value == '')this.value = 'Email';\"/>";
-	b_string += "					</td>";
-	b_string += "				</tr>";
-	b_string += "				<tr>";
-	b_string += "					<td class=\"truecenter\"><input type=\"submit\" />";
-	b_string += "				</tr>";
-	b_string += "			</table>";
-	b_string += "		</form>";
-	b_string += "	</div>";
-	return b_string;
-}
 
 var logged = false;
 var screen_name = "";
@@ -41,9 +20,9 @@ function set_screen_name(s_name){screen_name = s_name;}
 function get_screen_name(){return screen_name;}
 
 
-function _print_start_menu(_m_name){
+function _print_slide_menu(){document.getElementById('menu_slide').innerHTML = Menu_html;}
+function _build_start_menu(_m_name){
 	var b_string = "";
-	document.getElementById('menu_slide').style.height = "95px";
 	if(logged_in()==false){
 		b_string += "  <table style=\"width:100%;height:100%;\">";	
 		b_string += "		<tr>";
@@ -64,7 +43,13 @@ function _print_start_menu(_m_name){
 		b_string += "		</tr>";
 		b_string += "	</table>";
 	}
-	return b_string;
+	Menu_html = b_string;	
+}
+function _get_start_menu(){return Menu_html;}
+
+function _print_start_menu(_m_name){
+	_build_start_menu(_m_name);
+	document.getElementById('menu_slide').innerHTML = _print_menu();
 }
 
 var A_menu_top_link_address = new Array();
@@ -103,58 +88,7 @@ function _menu_top_clear(){
 
 }
 
-function _print_login(select){
-	switch(select){
-	case 0:
-		if(logged_in()==false){
-			document.getElementById('menu_slide').style.height = "95px";
-			var b_string = "";
-			b_string += "<nav class=\"main_nav\">";
-			b_string += "	<div><a class=\"close_button\" onclick=\"alert(event.clientX-this.offsetLeft);alert(this.offsetLeft);document.getElementById('menu_slide').innerHTML = _print_login(1);\">X</a></div>";
-			b_string += "	<div class=\"action_menu\">";
-			b_string += "		<form action=\"_login.php\" method=\"post\" autocomplete=\"on\">";
-			b_string += "			<table>";
-			b_string += "				<tr>";
-			b_string += "					<td>";
-			b_string += "						<input type=\"text\" name=\"user_name\" value=\"Username:\" onclick=\"this.value= '';\" onblur=\"if(this.value == '')this.value = 'Username:';\"/>";
-			b_string += "					</td>";
-			b_string += "					<td>";
-			b_string += "						<input type=\"password\" name=\"password\" value=\"Password\" onclick=\"this.value = '';\" onblur=\"if(this.value == '')this.value = 'Password';\"/>";
-			b_string += "					</td>";	
-			b_string += "				</tr>";
-			b_string += "				<tr>";
-			b_string += "					<td><a href=\"#\" onclick=\"document.getElementById('menu_slide').innerHTML = j_wkb_p_forget_password();\">Forget your password?</a></td>";
-			b_string += "					<td><input type=\"submit\" />";
-			b_string += "				</tr>";
-			b_string += "			</table>";
-			b_string += "		</form>";
-			b_string += "	</div>";
-			b_string += "</nav>";
-			return b_string;
-		}else{
-			return _print_start_menu(get_screen_name());
-		}
-		break;
-	case 1:
-		document.getElementById('menu_slide').style.height = "95%";
-		var b_string = "";
-		b_string += "<nav class=\"main_nav\">";
-		b_string += "	<div><a class=\"close_button\" onclick=\"document.getElementById('menu_slide').innerHTML = _print_login(0);\">X</a></div>";
-		b_string += "	<div class=\"action_menu\">";
-		b_string += "		<ul>";
-		for(i=0;i<_menu_top_count();i++){
-			b_string += "<li>";
-			b_string += "<a href=\""+A_menu_top_link_address[i]+"\">"+A_menu_top_link_caption[i]+"</a>";
-			b_string += "</li>";
-		}
-		b_string += "	</div>";
-		b_string += "</nav>";
-		return b_string;
-		break;
-	case 2:
-		return "You the man";
-	}
-}
+
 
 function _start_menu_text(txt){document.getElementById('start_message').innerHTML = txt;}
 
@@ -210,185 +144,4 @@ function _message_print(){
 	return b_string;
 }
 
-var mouseDown = [0,0,0,0,0,0,0,0,0],
-    mouseDownCount = 0,
-    mouseFocus = "",
-    z   = 4;
 
-var ALERT_MESSAGE = "";
-var NO_ACTION = 0,
-	ALERT = 1;
-	MOVE_BOX = 2,
-	CHANGE_COLOR = 3,
-	DOUBLE_SIZE = 4;
-var mouseFunction = NO_ACTION;
-
-
-window.onmousedown = function(evt){
-	++mouseDown[evt.button];
-	++mouseDownCount;
-	if(mouseDownCount > 1||mouseDownCount < 0){
-		mouseDown = [0,0,0,0,0,0,0,0,0],
-    		mouseDownCount = 0;
-	}
-
-	switch(mouseFunction){
-	case NO_ACTION:
-		break;
-	case ALERT:
-		alert(ALERT_MESSAGE);
-		mouseFocus = "";
-		mouseFunction = NO_ACTION;
-		break;
-	case MOVE_BOX:
-		document.getElementById('mouse_value').innerHTML = evt.button;
-		document.getElementById(mouseFocus).style.zIndex = z++;
-		document.getElementById(mouseFocus).style.userSelect = "none";
-		document.getElementById('mouse_value').innerHTML = document.getElementById(mouseFocus).style.zIndex;
-		break;
-	case CHANGE_COLOR:
-		document.getElementById(mouseFocus).style.backgroundColor = "red";
-	case DOUBLE_SIZE:
-		document.getElementById(mouseFocus).style.height = "700px";
-		document.getElementById(mouseFocus).style.width = "1700px";
-	default:
-		break;
-	}
-}
-
-window.onmouseup = function(evt){
-	--mouseDown[evt.button];
-	--mouseDownCount;
-	if(mouseDownCount > 1||mouseDownCount < 0){
-		mouseDown = [0,0,0,0,0,0,0,0,0],
-    		mouseDownCount = 0;
-	}
-	mouseFocus= "";
-	mouseFunction = NO_ACTION;
-	document.cookie = "menu1=This_will_be_telling; expires=Fri, 3 Aug 2001 20:47:11 UTC; path=/";
-}
-
-window.onmousemove = function(evt){
-	switch(mouseFunction){
-	case NO_ACTION:
-		break;
-	case ALERT:
-		mouseFocus = "";
-		mouseFunction = NO_ACTION;
-		break;
-	case MOVE_BOX:
-		if(mouseDownCount > 0 && mouseDown[0]>0){
-			document.getElementById(mouseFocus).style.left = String(event.clientX-document.getElementById('content_shell').offsetLeft)+"px";
-			document.getElementById(mouseFocus).style.top  = String(event.clientY-document.getElementById('content_shell').offsetTop)+"px";
-		/*document.getElementById(mouseFocus).innerHTML = "X: "+ event.clientX + "Y: " + event.clientY;*/
-		}
-		break;
-	default:
-		break;
-	}
-	
-}
-
-function _box(myid){
-	this.id 		= myid;
-	this.content 		= "";
-	this.menu_id 		= this.id +"_menu";
-	this.menu_item 		= new Array();
-	this.menu_item_link	= new Array();
-	this.onclick 		= false;
-	this.onclickcode	= "";
-	this.onmousedown	= false;
-	this.onmousedowncode	= "";
-	this.onmousedownInterval;
-	this.onblur		= false;
-	this.onblurcode		= "";
-	this.onmouseup		= false;
-	this.onmouseupcode	= "";
-	this.onmousemove	= false;
-	this.onmousemovecode	= "";
-	this.moveable   	= false;
-	this.position		= "";
-}
-
-var PX = 0,
-	PT = 1,
-	PERCENT = 3;
-function _box_setXY(thisbox, newX,newY,newUnit){
-	this_unit = "";
-	switch(newUnit){
-	case PX:
-		this_unit = 'px';
-		break;
-	case PT:
-		this_unit = 'pt';
-		break;
-	case PERCENT:
-		this_unit = '%';
-		break;
-	default:
-		alert('_box_setXY: Must delcare a proper unit');
-		break;
-	}
-	document.getElementById(thisbox.id).style.top	 = String(newY)+this_unit;
-	document.getElementById(thisbox.id).style.left	 = String(newX)+this_unit;
-}
-function _box_setZ(thisbox, newZ){
-	document.getElementById(thisbox.id).style.zIndex = newZ;
-}
-
-
-/*_box.prototype.get_rel_posX = function(){
-	return (event.clientX - document.getElementById(this.id).parentNode.offsetLeft);
-};*/
-
-
-/*_box.prototype.move_rel_posX = function(){
-	var current = document.getElementById(this.id).parentNode.offsetLeft;
-	current += event.clientX - document.getElementById(this.id).parentNode.offsetLeft;
-	var cur_left = document.getElementById(this.id).offsetLeft;
-	var n_left = String(cur_left + this.get_rel_posX())+"px";
-	document.getElementById(this.id).style.left = String(n_left);
-};*/
-
-
-
-function add_menu_item(thisbox,item,link){/*thisbox is from the class _box*/
-	thisbox.menu_item.push(item);
-	thisbox.menu_item_link.push(link);
-	if(thisbox.menu_item.length == thisbox.menu_item_link.length){return thisbox.menu_item.length;}
-	return -1;
-}
-
-_box.prototype.getbox = function(){
-	var b_string = "";
-	b_string += b_string += "<div class=\"_box\" id=\"" + this.id + "\" style=\"";
-	if(this.position != ""){b_string += "position:"+this.position+";";}
-	b_string += "\"";
-	if(this.onclick == true){
-		b_string += " onclick=\" "+this.onclickcode+" \" ";
-	}
-	if(this.onmousedown == true){
-		b_string += " onmousedown=\" "+this.onmousedowncode+" \" ";
-	}
-	if(this.onmouseup == true){
-		b_string += " onmouseup=\" "+this.onmouseupcode+" \" ";
-	}
-	if(this.onblur == true){
-		b_string += " onblur=\" "+this.onblurcode+" \" ";
-	}	
-	if(this.onmousemove == true){
-		b_string += " onmousemove=\" "+this.onmousemovecode+" \" ";
-	}
-	b_string += ">";
-	b_string +=	"<div id=\"" + this.menu_id + "\">";
-	b_string +=	"<ul>";
-	for(i=0;i<this.menu_item.length;i++){
-		b_string +=		"<li><a href=\""+this.menu_item_link[i]+"\">" + this.menu_item[i] + "</a></li>";
-	}
-	b_string +=	"</ul>";
-	b_string +=	"</div>";
-	b_string +=	"<div id=\""+this.id+"\">"+this.content+"</div>";
-	b_string += "</div>";
-	return b_string;
-
-};

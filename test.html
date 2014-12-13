@@ -5,14 +5,18 @@
 	<title>Just testing GIT out.</title>
 	<meta name="description" content="The future will be like the past but a little more shinny">
 	<link rel="stylesheet" type="text/css" href="test.css" />
+	<script src="_wkb_globals.js" type="text/javascript"></script>
+	<script src="_wkb_mouse.js" type="text/javascript"></script>
+	<script src="_wkb_box.js"type="text/javascript"></script>
 	<script src="_wkb_login.js" type="text/javascript"></script>
 	<script src="_wkb_validate_email.js" type="text/javascript"></script>
+	<script src="_wkb_view.js" type="text/javascript"></script>
 </head>
-<body id="_page">
+<body id="_page" onmouseenter=" mouseFocus=''; mouseFunction='';" onmouseup="  mouseFocus = ''; mouseFunction = NO_ACTION; ">
 	<div id="menu_slide"></div>
 	<div id="message_board"></div>
 
-	<div id="content_shell">
+	<div id="content_shell" >
 		<div id="content">
 			<div id="frm_search">
 				<form method="post" action="www.google.com" onsubmit="return _validate_email(document.getElementById('frm_email').value);" >
@@ -41,60 +45,84 @@
 		log_out();
 		_menu_top_add_link("#","Car Notes");
 		_menu_top_add_link("http://www.google.com","GOOGLE");
-		document.getElementById('menu_slide').innerHTML = _print_start_menu(get_screen_name());
+		_print_start_menu(get_screen_name());
 		_message_add("TEST","TESTING");
 		_message_pop();
 		if(_message_count()>0)document.getElementById('message_board').innerHTML = _message_print();
 		
+
 		var test_box = new _box("test_id");
-		var test_box2 = new _box("test_id2");
 		test_box.onclick = true;
 		test_box.onclickcode = "";
 		add_menu_item(test_box,"Google","http://www.google.com");
 		add_menu_item(test_box,"Yahoo","http://www.yahoo.com");
-		test_box.content 	  = "SOME GREAT THINGS<br /><br /><div id=\"mouse_value\"></div>";
+		_clear_menu();
+		_build_start_menu();
+		test_box.content 	  = _get_start_menu();
 		test_box.onmousemove 	  = true;
 		test_box.onmousemovecode  = "";
 		test_box.onmousedown 	  = true;
-		test_box.onmousedowncode  = " mouseFunction = MOVE_BOX; mouseFocus = 'test_id';";
+		test_box.onmousedowncode  += " mouseFunction = MOVE_BOX; mouseFocus = 'test_id';";
 		test_box.onmouseup 	  = true;
-		test_box.onmouseupcode 	  = " mouseFocus = ''; ";
+		test_box.onmouseupcode 	  += "";
 		test_box.position 	  = "absolute";
+		BOX_ARRAY.push(test_box);
+
+		var test_box2 = new _box("test_id2");
 		test_box2.position 	  = "absolute";
 		test_box2.onclick 	  = true;
-		test_box2.onclickcode 	  = "";
+		test_box2.onclickcode 	  += "";
 		test_box2.onmousedown	  = true;
-		test_box2.onmousedowncode = " mouseFunction = ALERT; mouseFocus = 'test_id2';";
+		test_box2.onmousedowncode += " mouseFunction = MOVE_BOX; mouseFocus = 'test_id2'; ";
 		test_box2.onmousemove	  = true;
-		test_box2.onmousemovecode = "";
+		test_box2.onmousemovecode += "";
 		test_box2.onblur  	  = true;
-		test_box2.onblurcode 	  = "";
+		test_box2.onblurcode 	  += "";
 		test_box2.onmouseup  	  = true;
-		test_box2.onmouseupcode   = " mouseFocus = ''; ";
+		test_box2.onmouseupcode   += "";
 		add_menu_item(test_box2,"Google","http://www.google.com");
 		add_menu_item(test_box2,"Yahoo","http://www.yahoo.com");
+		BOX_ARRAY.push(test_box2);
+
 
 		var test_box3 = new _box("test_id3");
 		test_box3.position 	  = "absolute";
 		test_box3.onclick 	  = true;
 		test_box3.onclickcode 	  = "";
 		test_box3.onmousedown	  = true;
-		test_box3.onmousedowncode = " mouseFunction = MOVE_BOX; ALERT_MESSAGE='Nobody better lay a figure on my butterfinger'; mouseFocus = 'test_id3';";
+		test_box3.onmousedowncode = " mouseFunction = MOVE_BOX; mouseFocus = 'test_id3'; ";
 		test_box3.onmousemove	  = true;
 		test_box3.onmousemovecode = "";
 		test_box3.onblur  	  = true;
 		test_box3.onblurcode 	  = "";
 		test_box3.onmouseup  	  = true;
-		test_box3.onmouseupcode   = " mouseFocus = ''; ";
+		test_box3.onmouseupcode   = " mouseFocus = ''; mouseFunction = NO_ACTION; ";
 		add_menu_item(test_box3,"Google","http://www.google.com");
 		add_menu_item(test_box3,"Yahoo","http://www.yahoo.com");
 		test_box3.content = "<div><table><tr><td style='background-color:green;'>STUFF</td><td>&nbsp;</td></tr><tr><td>CELL1</td><td>CELL2</td></tr></table></div>";
-		document.getElementById('content_shell').innerHTML = test_box.getbox()+test_box2.getbox()+test_box3.getbox();
+		/*document.getElementById('content_shell').innerHTML = test_box.getbox()+test_box2.getbox()+test_box3.getbox();*/
+		BOX_ARRAY.push(test_box3);
+
+
+		_clear_menu();
+		_print_slide_menu();
+		_add_menu_tile(test_box);
+		_add_menu_tile(test_box2);
+		_add_menu_tile(test_box3);
+		_box_setHeight(test_box,95,PX);	
+		_box_setHeight(test_box2,95,PX);
+		_box_setHeight(test_box3,95,PX);
+		_box_setWidth(test_box,95,PX);	
+		_box_setWidth(test_box2,95,PX);
+		_box_setWidth(test_box3,95,PX);
 		_box_setZ(test_box,3);
-		_box_setXY(test_box, 75,75, PERCENT);
-		setInterval(function(){_box_setXY(test_box,Math.random()*100,Math.random()*100,PERCENT);},13);
 		_box_setZ(test_box2,3);
 		_box_setZ(test_box3,3);
+		_box_setXY(test_box,5,0,PX);
+		_box_setXY(test_box2,5,0,PX);
+		_box_setXY(test_box3,5,0,PX);
+		_box_moveX(test_box2,95,PX);
+		_box_moveX(test_box3,95,PX);
 	</script>
 </body>
 </html>
