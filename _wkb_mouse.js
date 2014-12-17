@@ -82,6 +82,7 @@ window.onmousemove = function(evt){
 	case MOVE_BOX:
 		if(mouseDownCount > 0 && mouseDown[0]>0){
 			document.getElementById(mouseFocus).innerHTML = parseInt(100000* Math.random());
+			_array_collide();
 			/*document.getElementById(mouseFocus).style.left = String(event.clientX-document.getElementById('content_shell').offsetLeft)+"px";
 			document.getElementById(mouseFocus).style.top  = String(event.clientY-document.getElementById('content_shell').offsetTop)+"px";*/
 		}

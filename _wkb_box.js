@@ -26,21 +26,46 @@ function _box(myid){
 	this.onmousemovecode	= "";
 	this.moveable   	= false;
 	this.position		= "";
-	this.width		= 0;
-	this.height		= 0;
-	this.x			= 0;
-	this.y			= 0;
-	this.z			= 0;
-	this.Unit		= 0;
-	this.width		= 0;
-	this.height		= 0;
+	this.collide		= false;
+	this.x, this.y, this.z, this.unit, this.width, this.height, this.value;
 }
+
+function _box_transfer(box1,box2){
+	document.getElementById(box2.id).innerHTML = document.getElementById(box1.id).innerHTML;
+	box2.value = box1.value;
+	alert(box2.value);
+}
+
+function _array_collide(){
+	for(i = 0; i< BOX_ARRAY.length;i++){
+		for(j=0;j<BOX_ARRAY.length;j++){
+			if(i!=j){
+				if(_collide(BOX_ARRAY[i],BOX_ARRAY[j])==true)return true;
+				
+			}
+		}
+	}
+	return false;
+}
+
+function _collide(box1,box2){
+	if(box1.x <= box2.x+box2.width && box1.x+box1.width >= box2.x && box2.collide == true && box1.collide == true){
+		if(box1.y <= box2.y+box2.height && box1.y+box1.height >= box2.y && box2.collide == true && box1.collide == true){
+			_box_transfer(box1,box2);
+			return true;
+		}
+	}
+	return false;
+
+	/*document.getElementById(box1.id).innerHTML = "Box1.x: " + box1.x + " Box1.width: " + box1.width + "<br />" + box2.x + " " + box2.width;*/
+}
+
 
 var PX = 0,
 	PT = 1,
 	PERCENT = 3;
 function _get_Unit(newUnit){
-	switch(newUnit){
+	switch(parseInt(newUnit,10)){
 	case PX:
 		return 'px';
 		break;
@@ -57,36 +82,38 @@ function _get_Unit(newUnit){
 }
 
 function _box_setXY(thisbox, newX,newY,newUnit){
-	this.unit 					 = parseInt(newUnit);
-	this_unit 					 = String(_get_Unit(newUnit));
-	this.y						 = parseInt(newY);
-	document.getElementById(thisbox.id).style.top	 = String(this.y)+this_unit;
-	this.x						 = parseInt(newX);
-	document.getElementById(thisbox.id).style.left	 = String(this.x)+this_unit;
+	thisbox.unit 					 = parseInt(newUnit,10);
+	this_unit 					 = String(_get_Unit(thisbox.unit));
+	thisbox.y					 = parseInt(newY,10);
+	document.getElementById(thisbox.id).style.top	 = String(thisbox.y)+this_unit;
+	thisbox.x					 = parseInt(newX);
+	document.getElementById(thisbox.id).style.left	 = String(thisbox.x)+this_unit;
 }
+
+
 function _box_setZ(thisbox, newZ){
-	this.z						 = parseInt(newZ);
-	document.getElementById(thisbox.id).style.zIndex = this.z;
+	thisbox.z					 = parseInt(newZ,10);
+	document.getElementById(thisbox.id).style.zIndex = thisbox.z;
 }
 function _box_setHeight(thisbox, newHeight, newUnit){
-	this.unit 					 = parseInt(newUnit);
+	thisbox.unit 					 = parseInt(newUnit,10);
 	this_unit 					 = String(_get_Unit(newUnit));
-	this.height					 = parseInt(newHeight);
+	thisbox.height					 = parseInt(newHeight,10);
 	document.getElementById(thisbox.id).style.height = String(newHeight)+this_unit;
 }
 function _box_setWidth(thisbox, newWidth, newUnit){
-	this.unit					= parseInt(newUnit);
-	this_unit 					= String(_get_Unit(newUnit));
-	this.width					= parseInt(newWidth);
+	thisbox.unit					= parseInt(newUnit,10);
+	this_unit 					= String(_get_Unit(thisbox.unit));
+	thisbox.width					= parseInt(newWidth,10);
 	document.getElementById(thisbox.id).style.width = String(newWidth)+this_unit;
 }
 function _box_moveX(thisbox,distance,unit){
-	this.x = parseInt(this.x) + parseInt(distance);
-	document.getElementById(thisbox.id).style.left = String(this.x) + String(_get_Unit(unit));
+	thisbox.x = parseInt(thisbox.x,10) + parseInt(distance,10);
+	document.getElementById(thisbox.id).style.left = String(thisbox.x) + String(_get_Unit(unit));
 }
 function _box_moveY(thisbox,distance,unit){
-	this.y = parseInt(this.y) + parseInt(distance);
-	document.getElementById(thisbox.id).style.top = String(this.y) + String(_get_unit(unit));
+	thisbox.y = parseInt(thisbox.y,10) + parseInt(distance,10);
+	document.getElementById(thisbox.id).style.top = String(thisbox.y) + String(_get_unit(unit));
 }
 
 function add_menu_item(thisbox,item,link){/*thisbox is from the class _box*/

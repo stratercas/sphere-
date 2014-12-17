@@ -103,26 +103,30 @@
 		/*document.getElementById('content_shell').innerHTML = test_box.getbox()+test_box2.getbox()+test_box3.getbox();*/
 		BOX_ARRAY.push(test_box3);
 
-
+alert('');
 		_clear_menu();
 		_print_slide_menu();
 		_add_menu_tile(test_box);
 		_add_menu_tile(test_box2);
 		_add_menu_tile(test_box3);
-		_box_setHeight(test_box,95,PX);	
+		_box_setHeight(test_box ,95,PX);	
 		_box_setHeight(test_box2,95,PX);
 		_box_setHeight(test_box3,95,PX);
-		_box_setWidth(test_box,95,PX);	
+		_box_setWidth(test_box,95,PX);
 		_box_setWidth(test_box2,95,PX);
 		_box_setWidth(test_box3,95,PX);
-		_box_setZ(test_box,3);
+		_box_setZ(test_box ,3);
 		_box_setZ(test_box2,3);
 		_box_setZ(test_box3,3);
-		_box_setXY(test_box,5,0,PX);
+		_box_setXY(test_box, 5,0,PX);
 		_box_setXY(test_box2,5,0,PX);
 		_box_setXY(test_box3,5,0,PX);
-		_box_moveX(test_box2,95,PX);
-		_box_moveX(test_box3,95,PX);
+		_box_moveX(test_box2,96,PX);
+		_box_moveX(test_box3,(96*2),PX);
+		BOX_ARRAY[1].collide = true;
+		BOX_ARRAY[2].collide = true;
+		BOX_ARRAY[1].value = "My value is Sparta";
+
 	</script>
 </body>
 </html>
