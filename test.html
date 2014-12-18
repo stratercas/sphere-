@@ -54,8 +54,8 @@
 		var test_box = new _box("test_id");
 		test_box.onclick = true;
 		test_box.onclickcode = "";
-		add_menu_item(test_box,"Google","http://www.google.com");
-		add_menu_item(test_box,"Yahoo","http://www.yahoo.com");
+		/*add_menu_item(test_box,"Google","http://www.google.com");
+		add_menu_item(test_box,"Yahoo","http://www.yahoo.com");*/
 		_clear_menu();
 		_build_start_menu();
 		test_box.content 	  = _get_start_menu();
@@ -100,10 +100,8 @@
 		add_menu_item(test_box3,"Google","http://www.google.com");
 		add_menu_item(test_box3,"Yahoo","http://www.yahoo.com");
 		test_box3.content = "<div><table><tr><td style='background-color:green;'>STUFF</td><td>&nbsp;</td></tr><tr><td>CELL1</td><td>CELL2</td></tr></table></div>";
-		/*document.getElementById('content_shell').innerHTML = test_box.getbox()+test_box2.getbox()+test_box3.getbox();*/
 		BOX_ARRAY.push(test_box3);
 
-alert('');
 		_clear_menu();
 		_print_slide_menu();
 		_add_menu_tile(test_box);

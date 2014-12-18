@@ -33,33 +33,32 @@ function _box(myid){
 function _box_transfer(box1,box2){
 	document.getElementById(box2.id).innerHTML = document.getElementById(box1.id).innerHTML;
 	box2.value = box1.value;
-	alert(box2.value);
 }
 
 function _array_collide(){
 	for(i = 0; i< BOX_ARRAY.length;i++){
 		for(j=0;j<BOX_ARRAY.length;j++){
 			if(i!=j){
-				if(_collide(BOX_ARRAY[i],BOX_ARRAY[j])==true)return true;
-				
+				if(_collide(BOX_ARRAY[i],BOX_ARRAY[j])==true)return true;	
 			}
 		}
-	}
-	return false;
+	}return false;
 }
 
-function _collide(box1,box2){
+function _box_collide(box1,box2){
 	if(box1.x <= box2.x+box2.width && box1.x+box1.width >= box2.x && box2.collide == true && box1.collide == true){
 		if(box1.y <= box2.y+box2.height && box1.y+box1.height >= box2.y && box2.collide == true && box1.collide == true){
-			_box_transfer(box1,box2);
 			return true;
 		}
-	}
-	return false;
-
-	/*document.getElementById(box1.id).innerHTML = "Box1.x: " + box1.x + " Box1.width: " + box1.width + "<br />" + box2.x + " " + box2.width;*/
+	}return false;
 }
 
+function _box_drop(box1,box2){
+	if(_box_collide(box1,box2)==true){
+		_box_transfer(box1,box2);
+		return true;
+	}return false;
+}
 
 var PX = 0,
 	PT = 1,
