@@ -1,8 +1,12 @@
 var Menu_html = "";
 function _clear_menu(){Menu_html = "";}
-function _add_menu_tile(newTile){
-	Menu_html += newTile.getbox();
-	document.getElementById('menu_slide').innerHTML = Menu_html;
+var MENU_TILES = new Array();
+function _add_menu_tile(newTile){MENU_TILES.push(newTile);}
+function _print_menu_tiles(){
+	Menu_html = "";
+	for(i=0;i<MENU_TILES.length;i++){
+		Menu_html+= MENU_TILES[i].getbox();
+	}document.getElementById('menu_slide').innerHTML = Menu_html;
 }
 
 function _print_menu(){return Menu_html;}

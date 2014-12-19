@@ -103,10 +103,10 @@
 		BOX_ARRAY.push(test_box3);
 
 		_clear_menu();
-		_print_slide_menu();
 		_add_menu_tile(test_box);
 		_add_menu_tile(test_box2);
 		_add_menu_tile(test_box3);
+		_print_menu_tiles();
 		_box_setHeight(test_box ,95,PX);	
 		_box_setHeight(test_box2,95,PX);
 		_box_setHeight(test_box3,95,PX);
@@ -124,7 +124,6 @@
 		BOX_ARRAY[1].collide = true;
 		BOX_ARRAY[2].collide = true;
 		BOX_ARRAY[1].value = "My value is Sparta";
-
 	</script>
 </body>
 </html>
