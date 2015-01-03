@@ -146,7 +146,19 @@ function add_menu_item(thisbox,item,link){/*thisbox is from the class _box*/
 }
 
 _box.prototype.pop_menu = function(){
-	alert("I POP");
+	var b_string = "";
+	b_string +=	"<ul>";
+	for(i=0;i<this.menu_item.length;i++){
+		b_string +=		"<li><a href=\""+this.menu_item_link[i]+"\">" + this.menu_item[i] + "</a></li>";
+	}
+	b_string +=	"</ul>";
+	document.getElementById(this.id+"_menu").style.zindex = 15;
+	document.getElementById(this.id+"_menu").style.position = "absolute";
+	document.getElementById(this.id+"_menu").style.backgroundColor = "white";
+	document.getElementById(this.id+"_menu").style.borderWidth = "1px;"
+	document.getElementById(this.id+"_menu").style.borderColor = "black";
+	document.getElementById(this.id+"_menu").style.borderStyle = "solid";
+	document.getElementById(this.id+"_menu").innerHTML = b_string;
 };
 
 
@@ -173,12 +185,6 @@ _box.prototype.getbox = function(){
 	b_string += ">";
 	b_string +=	"<div id=\"" + this.menu_id + "\">";
 	b_string +=	"	<div id=\""+this.id+"_menu\" onclick=\"find_tile('"+this.id+"').pop_menu();\">Menu(Working on)</div>";
-/*	b_string +=	"<ul>";
-	for(i=0;i<this.menu_item.length;i++){
-		b_string +=		"<li><a href=\""+this.menu_item_link[i]+"\">" + this.menu_item[i] + "</a></li>";
-	}
-	b_string +=	"</ul>";
-*/
 	b_string +=	"</div>";
 	b_string +=	"<div id=\""+this.id+"\">"+this.content+"</div>";
 	b_string += "</div>";
