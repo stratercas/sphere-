@@ -5,6 +5,8 @@ function _add_menu_tile(newTile){
 	MENU_TILES.push(newTile);
 
 }
+function find_tile(s_tile_id){for(j=0;j<MENU_TILES.length;j++){if(MENU_TILES[j].id == s_tile_id){return MENU_TILES[j];}}}
+
 function _print_menu_tiles(){
 	for(i=0;i<MENU_TILES.length;i++){
 		/*alert(MENU_TILES[i].id);*/
@@ -143,6 +145,11 @@ function add_menu_item(thisbox,item,link){/*thisbox is from the class _box*/
 	return -1;
 }
 
+_box.prototype.pop_menu = function(){
+	alert("I POP");
+};
+
+
 _box.prototype.getbox = function(){
 	var b_string = "";
 	b_string += b_string += "<div class=\"_box\" id=\"" + this.id + "\" style=\"";
@@ -165,11 +172,13 @@ _box.prototype.getbox = function(){
 	}
 	b_string += ">";
 	b_string +=	"<div id=\"" + this.menu_id + "\">";
-	b_string +=	"<ul>";
+	b_string +=	"	<div id=\""+this.id+"_menu\" onclick=\"find_tile('"+this.id+"').pop_menu();\">Menu(Working on)</div>";
+/*	b_string +=	"<ul>";
 	for(i=0;i<this.menu_item.length;i++){
 		b_string +=		"<li><a href=\""+this.menu_item_link[i]+"\">" + this.menu_item[i] + "</a></li>";
 	}
 	b_string +=	"</ul>";
+*/
 	b_string +=	"</div>";
 	b_string +=	"<div id=\""+this.id+"\">"+this.content+"</div>";
 	b_string += "</div>";
