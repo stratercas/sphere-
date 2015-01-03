@@ -50,7 +50,6 @@
 		_message_pop();
 		if(_message_count()>0)document.getElementById('message_board').innerHTML = _message_print();
 		
-
 		var test_box = new _box("test_id");
 		test_box.onclick = true;
 		test_box.onclickcode = "";
@@ -66,8 +65,6 @@
 		test_box.onmouseup 	  = true;
 		test_box.onmouseupcode 	  += "";
 		test_box.position 	  = "absolute";
-		BOX_ARRAY.push(test_box);
-
 		var test_box2 = new _box("test_id2");
 		test_box2.position 	  = "absolute";
 		test_box2.onclick 	  = true;
@@ -82,9 +79,6 @@
 		test_box2.onmouseupcode   += "";
 		add_menu_item(test_box2,"Google","http://www.google.com");
 		add_menu_item(test_box2,"Yahoo","http://www.yahoo.com");
-		BOX_ARRAY.push(test_box2);
-
-
 		var test_box3 = new _box("test_id3");
 		test_box3.position 	  = "absolute";
 		test_box3.onclick 	  = true;
@@ -99,31 +93,17 @@
 		test_box3.onmouseupcode   = " mouseFocus = ''; mouseFunction = NO_ACTION; ";
 		add_menu_item(test_box3,"Google","http://www.google.com");
 		add_menu_item(test_box3,"Yahoo","http://www.yahoo.com");
+add_menu_item(test_box3,"Yahoo","http://www.yahoo.com");
+add_menu_item(test_box3,"Yahoo","http://www.yahoo.com");
+add_menu_item(test_box3,"Yahoo","http://www.yahoo.com");
+add_menu_item(test_box3,"Yahoo","http://www.yahoo.com");
 		test_box3.content = "<div><table><tr><td style='background-color:green;'>STUFF</td><td>&nbsp;</td></tr><tr><td>CELL1</td><td>CELL2</td></tr></table></div>";
-		BOX_ARRAY.push(test_box3);
-
 		_clear_menu();
 		_add_menu_tile(test_box);
 		_add_menu_tile(test_box2);
 		_add_menu_tile(test_box3);
 		_print_menu_tiles();
-		_box_setHeight(test_box ,95,PX);	
-		_box_setHeight(test_box2,95,PX);
-		_box_setHeight(test_box3,95,PX);
-		_box_setWidth(test_box,95,PX);
-		_box_setWidth(test_box2,95,PX);
-		_box_setWidth(test_box3,95,PX);
-		_box_setZ(test_box ,3);
-		_box_setZ(test_box2,3);
-		_box_setZ(test_box3,3);
-		_box_setXY(test_box, 5,0,PX);
-		_box_setXY(test_box2,5,0,PX);
-		_box_setXY(test_box3,5,0,PX);
-		_box_moveX(test_box2,96,PX);
-		_box_moveX(test_box3,(96*2),PX);
-		BOX_ARRAY[1].collide = true;
-		BOX_ARRAY[2].collide = true;
-		BOX_ARRAY[1].value = "My value is Sparta";
+		
 	</script>
 </body>
 </html>
