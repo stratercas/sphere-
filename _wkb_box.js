@@ -1,5 +1,5 @@
 /*****************************************
-		Email Validator
+		_wkb_box.js
 Author:	 William K. Bowersox
 Release: alpha .1
 Date: 	 07/29/2014
@@ -165,13 +165,17 @@ _box.prototype.pop_menu = function(){
 		b_string +=	"<li><a href=\""+this.menu_item_link[i]+"\">" + this.menu_item[i] + "</a></li>";
 	}
 	b_string +=	"</ul>";
-	document.getElementById(this.menu_id).style.zindex = 15;
+
 	document.getElementById(this.menu_id).style.position = "absolute";
 	document.getElementById(this.menu_id).style.backgroundColor = "white";
 	document.getElementById(this.menu_id).style.borderWidth = "1px;"
 	document.getElementById(this.menu_id).style.borderColor = "black";
 	document.getElementById(this.menu_id).style.borderStyle = "solid";
 	document.getElementById(this.menu_id).innerHTML = b_string;
+	document.getElementById(this.id+"_content").style.position = "relative";
+	document.getElementById(this.id+"_content").style.top = "25px";
+	document.getElementById(this.id+"_content").style.zIndex = 1;
+	document.getElementById(this.menu_id).style.zIndex = 15;
 };
 
 
@@ -198,10 +202,10 @@ _box.prototype.getbox = function(){
 	b_string += ">";
 	if(this.menu == true){
 		b_string +=	"<div id=\"" + this.menu_id + "\">";
-		b_string +=	"	<div id=\""+this.id+"_menu\" onclick=\"find_tile('"+this.id+"').pop_menu();\">Menu(Working on)</div>";
+		b_string +=	"	<div id=\""+this.id+"_menu\" onclick=\"find_tile('"+this.id+"').pop_menu();\">Menu</div>";
 		b_string +=	"</div>";
 	}
-	b_string +=	"<div id=\""+this.id+"\">"+this.content+"</div>";
+	b_string +=	"<div id=\""+this.id+"_content\">"+this.content+"</div>";
 	b_string += "</div>";
 	return b_string;
 
