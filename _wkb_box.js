@@ -1,3 +1,13 @@
+/*****************************************
+		Email Validator
+Author:	 William K. Bowersox
+Release: alpha .1
+Date: 	 07/29/2014
+Description:
+	This is a set of class and functions that is intended to create a uniform way of creating a tile based webpage.
+	There are currently tile menu, positioning, sizing, drag and drop features.(01/03/2014)
+*****************************************/
+
 var Menu_html = "";
 function _clear_menu(){Menu_html = "";}
 var MENU_TILES = new Array();
