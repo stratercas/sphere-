@@ -159,7 +159,7 @@ function add_menu_item(thisbox,item,link){/*thisbox is from the class _box*/
 _box.prototype.pop_menu = function(){
 	this.menu_hold_html = document.getElementById(this.menu_id).innerHTML;	
 	var b_string = "";
-	b_string +=	"<a href=\"#\" onclick=\"document.getElementById('"+this.menu_id+"').innerHTML = find_tile('"+this.id+"').menu_hold_html;\">X</a></br />";
+	b_string +=	"<a href=\"#\" onclick=\"document.getElementById('"+this.menu_id+"').innerHTML = find_tile('"+this.id+"').menu_hold_html;document.getElementById('"+this.menu_id+"').style.minWidth= '100%';document.getElementById('"+this.menu_id+"').style.width= '100%';\">X</a></br />";
 	b_string +=	"<ul>";
 	for(i=0;i<this.menu_item.length;i++){
 		b_string +=	"<li><a href=\""+this.menu_item_link[i]+"\">" + this.menu_item[i] + "</a></li>";
@@ -168,7 +168,8 @@ _box.prototype.pop_menu = function(){
 
 	document.getElementById(this.menu_id).style.position = "absolute";
 	document.getElementById(this.menu_id).style.backgroundColor = "white";
-	document.getElementById(this.menu_id).style.borderWidth = "1px;"
+	document.getElementById(this.menu_id).style.borderWidth = "1px";
+	document.getElementById(this.menu_id).style.minWidth = "150px";
 	document.getElementById(this.menu_id).style.borderColor = "black";
 	document.getElementById(this.menu_id).style.borderStyle = "solid";
 	document.getElementById(this.menu_id).innerHTML = b_string;
@@ -201,9 +202,10 @@ _box.prototype.getbox = function(){
 	}
 	b_string += ">";
 	if(this.menu == true){
-		b_string +=	"<div id=\"" + this.menu_id + "\">";
-		b_string +=	"	<div id=\""+this.id+"_menu\" onclick=\"find_tile('"+this.id+"').pop_menu();\">Menu</div>";
-		b_string +=	"</div>";
+		b_string += "<div id=\""+this.menu_id+"\">";
+		b_string +=	"<div id=\""+this.menu_id+"_content\" onclick=\"find_tile('"+this.id+"').pop_menu();\">Menu</div>";
+		b_string += "</div>";
+		
 	}
 	b_string +=	"<div id=\""+this.id+"_content\">"+this.content+"</div>";
 	b_string += "</div>";
