@@ -15,7 +15,6 @@ function _print_menu_tiles(){
 	for(j=0;j<MENU_TILES.length;j++){/*There is an scope error that is not allowing the normal i index varble name.  This is something that should be looked into to prevent further confusion 01/03/2015*/
 		var a_string = MENU_TILES[j].getbox();
 		Menu_html+= a_string;
-		alert(j);
 	}document.getElementById('menu_slide').innerHTML = Menu_html;
 	
 	for(i=0;i<MENU_TILES.length;i++){
