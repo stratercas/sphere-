@@ -1,12 +1,29 @@
 var Menu_html = "";
 function _clear_menu(){Menu_html = "";}
 var MENU_TILES = new Array();
-function _add_menu_tile(newTile){MENU_TILES.push(newTile);}
+function _add_menu_tile(newTile){
+	MENU_TILES.push(newTile);
+
+}
 function _print_menu_tiles(){
-	Menu_html = "";
 	for(i=0;i<MENU_TILES.length;i++){
-		Menu_html+= MENU_TILES[i].getbox();
+		/*alert(MENU_TILES[i].id);*/
+	}
+	Menu_html = "";
+	for(j=0;j<MENU_TILES.length;j++){/*There is an scope error that is not allowing the normal i index varble name.  This is something that should be looked into to prevent further confusion 01/03/2015*/
+		var a_string = MENU_TILES[j].getbox();
+		Menu_html+= a_string;
+		alert(j);
 	}document.getElementById('menu_slide').innerHTML = Menu_html;
+	
+	for(i=0;i<MENU_TILES.length;i++){
+		document.getElementById("menu_slide").style.width = "100%";
+		document.getElementById(MENU_TILES[i].id).style.width = String(96)+"px";
+		document.getElementById(MENU_TILES[i].id).style.height = String(96)+"px";
+		document.getElementById(MENU_TILES[i].id).style.position = "absolute";
+		document.getElementById(MENU_TILES[i].id).style.left = String(parseInt(i*96,10)+"px");
+		
+	}
 }
 
 function _print_menu(){return Menu_html;}
