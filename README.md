@@ -1,7 +1,6 @@
 sphere-
 =======
-This repository is for design ideas and public documents related to this project.
-
-There is no particular aim in this repository to create a finished product although this could change in the future.
+This repository is simply a sandbox for William K. Bowersox.
+Anything in this repository may or may not be functional or complete.  
 
 William K. Bowersox
